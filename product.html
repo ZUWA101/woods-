@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product | WOODS STUDIO</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body class="product-page">
+    <header>
+      <a href="index.html">WOODS STUDIO</a>
+
+      <button
+        class="mobile-menu-toggle"
+        aria-label="Open menu"
+        aria-controls="main-nav"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+      <nav id="main-nav">
+        <a href="index.html#collection" aria-label="Back to collection"
+          >&larr;</a
+        >
+        <div class="shop-menu">
+          <a href="index.html#shop" class="shop-trigger">Shop</a>
+          <div class="dropdown">
+            <p class="dropdown-heading">Categories</p>
+            <a href="index.html#new-arrivals">New Arrivals</a>
+            <a href="index.html#footwear">Footwear</a>
+            <a href="index.html#handbags">Handbags</a>
+
+            <p class="dropdown-heading">Collections</p>
+            <a href="index.html#bridal">Bridal Collection</a>
+            <a href="index.html#summer">Summer Collection</a>
+          </div>
+        </div>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+      </nav>
+
+      <div class="header-actions">
+        <button
+          class="bag-link"
+          type="button"
+          aria-label="Open shopping bag"
+          aria-controls="bag-drawer"
+          aria-expanded="false"
+        >
+          <i class="bi bi-bag" aria-hidden="true">
+            <span class="bag-count">0</span>
+          </i>
+        </button>
+
+        <a href="#profile" class="profile-link" aria-label="Profile">
+          <i class="bi bi-person" aria-hidden="true"></i>
+        </a>
+
+        <details class="search-control">
+          <summary aria-label="Open search">
+            <i class="bi bi-search" aria-hidden="true"></i>
+          </summary>
+
+          <form class="search-form" role="search">
+            <input
+              id="site-search"
+              type="search"
+              name="q"
+              placeholder="Search"
+              aria-label="Search"
+            />
+          </form>
+        </details>
+
+        <select class="region-link" aria-label="Choose region and currency">
+          <option value="NG" selected>Nigeria | NGN &#8358;</option>
+          <option value="US">United States | USD $</option>
+          <option value="GB">United Kingdom | GBP £</option>
+          <option value="GH">Ghana | GHS ₵</option>
+          <option value="CA">Canada | CAD $</option>
+        </select>
+      </div>
+    </header>
+
+    <main>
+      <img id="product-detail-image" src="shoe.jpg" alt="Sculpted Heel" />
+      <div class="product-detail-info">
+        <h1 id="product-detail-name">Sculpted Heel</h1>
+        <p id="product-detail-description">
+          Product description will appear here.
+        </p>
+        <p id="product-detail-price"></p>
+        <button id="add-to-bag" type="button">Add to Bag</button>
+        <p id="bag-message" aria-live="polite"></p>
+      </div>
+    </main>
+
+    <button
+      class="bag-overlay"
+      type="button"
+      aria-label="Close shopping bag"
+    ></button>
+
+    <aside
+      id="bag-drawer"
+      class="bag-drawer"
+      aria-label="Shopping bag"
+      aria-hidden="true"
+    >
+      <button class="bag-close" type="button" aria-label="Close shopping bag">
+        &times;
+      </button>
+      <h2>Your Bag</h2>
+      <div id="bag-items"></div>
+    </aside>
+
+    <script src="products.js"></script>
+    <script src="product-page.js"></script>
+    <script src="bag-page.js"></script>
+
+    <script>
+      const bagButton = document.querySelector(".bag-link");
+      const bagDrawer = document.querySelector("#bag-drawer");
+      const bagOverlay = document.querySelector(".bag-overlay");
+      const bagCloseButton = document.querySelector(".bag-close");
+
+      function closeBagDrawer() {
+        bagDrawer.classList.remove("is-open");
+        bagOverlay.classList.remove("is-open");
+        bagDrawer.setAttribute("aria-hidden", "true");
+        bagButton.setAttribute("aria-expanded", "false");
+      }
+
+      bagButton.addEventListener("click", () => {
+        bagDrawer.classList.add("is-open");
+        bagOverlay.classList.add("is-open");
+        bagDrawer.setAttribute("aria-hidden", "false");
+        bagButton.setAttribute("aria-expanded", "true");
+      });
+
+      bagCloseButton.addEventListener("click", closeBagDrawer);
+      bagOverlay.addEventListener("click", closeBagDrawer);
+    </script>
+  </body>
+</html>
